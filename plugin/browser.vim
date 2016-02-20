@@ -111,7 +111,7 @@ com! -nargs=+ VimScript        call VimScriptSearch(<q-args>,g:browser_split)
 com! -nargs=+ VimScriptT       call VimScriptSearch(<q-args>,'tabnew')
 com! -nargs=+ VimTip           call VimTipSearch(<q-args>,g:browser_split)
 com! -nargs=+ VimTipT          call VimTipSearch(<q-args>,'tabnew')
-
+com! -nargs=+ L1spSearch       call L1spSearch(<q-args>, g:browser_split)
 
 "OpenWebBrowser  {{{1
 fun! OpenWebBrowser (address, method)
@@ -229,3 +229,10 @@ fun! OpenStackOverflow (keyword,method)
     let proc_keyword = substitute(proc_keyword , ' ', '+', 'g')
     call OpenWebBrowser('http://stackoverflow.com/search?q='.proc_keyword, a:method)
 endfun
+
+" L1sp.org Hyperspec search (found on http://l1sp.org/cl subsection)
+fun! L1spSearch (keyword, method) 
+    let address = 'http://l1sp.org/cl/' . a:keyword 
+    call OpenWebBrowser(address, a:method)
+endfun 
+
